@@ -5,16 +5,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import androidx.databinding.DataBindingUtil;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.Settings;
 import androidx.core.view.MenuItemCompat;
 import android.view.Menu;
 import android.view.MenuItem;

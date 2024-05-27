@@ -11,6 +11,7 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -148,6 +149,27 @@ public class SheimiFragmentActivity extends AppCompatActivity {
         }
     }
 
+    public boolean checkAndRequestAccessAllFilesPermission(int requestCode) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R || Environment.isExternalStorageManager()) {
+            return false;
+        }
+        showMessageDialog(
+            R.string.dialog_access_all_files_title,
+            R.string.dialog_access_all_files_msg,
+            R.string.label_ok, (dialog, which) -> {
+                try {
+                    Uri uri = Uri.fromParts("package", getPackageName(), null);
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, uri);
+                    startActivityForResult(intent, requestCode);
+                } catch (ActivityNotFoundException e) {
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                    startActivityForResult(intent, requestCode);
+                }
+            }
+        );
+        return true;
+    }
+
     /* View Utils Start */
     public void showToastMessage(final String msg) {
         runOnUiThread(new Runnable() {
@@ -191,7 +213,13 @@ public class SheimiFragmentActivity extends AppCompatActivity {
             .setPositiveButton(R.string.label_ok, new DummyDialogListener()).show();
     }
 
-    public void showOptionsDialog(int title, final int option_names,
+    public void showMessageDialog(int title, int msg) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title).setMessage(getString(msg))
+            .setPositiveButton(R.string.label_ok, new DummyDialogListener()).show();
+    }
+
+    public void showOptionsDialog(int title,final int option_names,
                                   final onOptionDialogClicked[] option_listeners) {
         CharSequence[] options_values = getResources().getStringArray(option_names);
         showOptionsDialog(title, options_values, option_listeners);

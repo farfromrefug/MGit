@@ -17,8 +17,10 @@
         <item>Новая ветвь</item>
         <item>Обновить</item>
         <item>Загрузить</item>
+        <item>Quick Push(Add,Commit,Push)</item>
         <item>Добавить все</item>
         <item>Закоммитить</item>
+        <item>Undo Last Commit</item>
         <item>СБРОС</item>
         <item>Слитие</item>
         <item>Обновить в новую ветку</item>
