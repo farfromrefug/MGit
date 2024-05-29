@@ -3,11 +3,11 @@ package com.manichord.mgit.clone
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import me.sheimi.sgit.MGitApplication
-import me.sheimi.sgit.R
-import me.sheimi.sgit.database.models.Repo
-import me.sheimi.sgit.repo.tasks.repo.CloneTask
-import me.sheimi.sgit.repo.tasks.repo.InitLocalTask
+import com.manichord.mgit.R
+import com.manichord.mgit.MGitApplication
+import com.manichord.mgit.database.models.Repo
+import com.manichord.mgit.repo.tasks.repo.CloneTask
+import com.manichord.mgit.repo.tasks.repo.InitLocalTask
 import timber.log.Timber
 
 class CloneViewModel(application: Application) : AndroidViewModel(application) {

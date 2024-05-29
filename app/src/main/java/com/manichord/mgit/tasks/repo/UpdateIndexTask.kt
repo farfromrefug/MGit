@@ -2,9 +2,9 @@ package com.manichord.mgit.tasks.repo
 
 import com.manichord.mgit.common.get
 import com.manichord.mgit.exceptions.NoSuchIndexPathException
-import me.sheimi.sgit.R
-import me.sheimi.sgit.database.models.Repo
-import me.sheimi.sgit.repo.tasks.repo.RepoOpTask
+import com.manichord.mgit.R
+import com.manichord.mgit.database.models.Repo
+import com.manichord.mgit.repo.tasks.repo.RepoOpTask
 import org.eclipse.jgit.dircache.DirCache
 import org.eclipse.jgit.errors.CorruptObjectException
 import org.eclipse.jgit.errors.NoWorkTreeException

@@ -27,21 +27,21 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-import me.sheimi.android.activities.SheimiFragmentActivity;
-import me.sheimi.sgit.MGitApplication;
-import me.sheimi.sgit.R;
-import me.sheimi.sgit.activities.RepoDetailActivity;
-import me.sheimi.sgit.activities.UserSettingsActivity;
-import me.sheimi.sgit.activities.explorer.ExploreFileActivity;
-import me.sheimi.sgit.activities.explorer.ImportRepositoryActivity;
-import me.sheimi.sgit.adapters.RepoListAdapter;
-import me.sheimi.sgit.database.RepoDbManager;
-import me.sheimi.sgit.database.models.Repo;
-import me.sheimi.sgit.databinding.ActivityMainBinding;
-import me.sheimi.sgit.dialogs.DummyDialogListener;
-import me.sheimi.sgit.dialogs.ImportLocalRepoDialog;
-import me.sheimi.sgit.repo.tasks.repo.CloneTask;
-import me.sheimi.sgit.ssh.PrivateKeyUtils;
+import com.manichord.android.activities.SheimiFragmentActivity;
+import com.manichord.mgit.MGitApplication;
+import com.manichord.mgit.R;
+import com.manichord.mgit.activities.RepoDetailActivity;
+import com.manichord.mgit.activities.UserSettingsActivity;
+import com.manichord.mgit.activities.explorer.ExploreFileActivity;
+import com.manichord.mgit.activities.explorer.ImportRepositoryActivity;
+import com.manichord.mgit.adapters.RepoListAdapter;
+import com.manichord.mgit.database.RepoDbManager;
+import com.manichord.mgit.database.models.Repo;
+import com.manichord.mgit.databinding.ActivityMainBinding;
+import com.manichord.mgit.dialogs.DummyDialogListener;
+import com.manichord.mgit.dialogs.ImportLocalRepoDialog;
+import com.manichord.mgit.repo.tasks.repo.CloneTask;
+import com.manichord.mgit.ssh.PrivateKeyUtils;
 import timber.log.Timber;
 
 public class RepoListActivity extends SheimiFragmentActivity {
@@ -154,19 +154,19 @@ public class RepoListActivity extends SheimiFragmentActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
-        switch (item.getItemId()) {
-            case R.id.action_new:
-                showCloneView();
-                return true;
-            case R.id.action_import_repo:
-                intent = new Intent(this, ImportRepositoryActivity.class);
-                startActivityForResult(intent, REQUEST_IMPORT_REPO);
-                forwardTransition();
-                return true;
-            case R.id.action_settings:
-                intent = new Intent(this, UserSettingsActivity.class);
-                startActivity(intent);
-                return true;
+        int itemId = item.getItemId();
+        if (itemId == R.id.action_new) {
+            showCloneView();
+            return true;
+        } else if (itemId == R.id.action_import_repo) {
+            intent = new Intent(this, ImportRepositoryActivity.class);
+            startActivityForResult(intent, REQUEST_IMPORT_REPO);
+            forwardTransition();
+            return true;
+        } else if (itemId == R.id.action_settings) {
+            intent = new Intent(this, UserSettingsActivity.class);
+            startActivity(intent);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

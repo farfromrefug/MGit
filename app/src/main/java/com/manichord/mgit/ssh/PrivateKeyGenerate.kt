@@ -8,10 +8,9 @@ import android.widget.EditText
 import android.widget.RadioGroup
 import com.jcraft.jsch.JSch
 import com.jcraft.jsch.KeyPair
-import me.sheimi.android.views.SheimiDialogFragment
-import me.sheimi.sgit.R
-import me.sheimi.sgit.activities.explorer.PrivateKeyManageActivity
-import me.sheimi.sgit.ssh.PrivateKeyUtils
+import com.manichord.mgit.R
+import com.manichord.android.views.SheimiDialogFragment
+import com.manichord.mgit.activities.explorer.PrivateKeyManageActivity
 import org.acra.ktx.sendWithAcra
 import timber.log.Timber
 import java.io.File

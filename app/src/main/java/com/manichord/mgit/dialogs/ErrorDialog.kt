@@ -5,14 +5,15 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.annotation.StringRes
 import android.widget.Button
-import kotlinx.android.synthetic.main.dialog_error.view.*
-import me.sheimi.android.views.SheimiDialogFragment
-import me.sheimi.sgit.BuildConfig
-import me.sheimi.sgit.R
-import me.sheimi.sgit.dialogs.DummyDialogListener
+import com.manichord.mgit.R
+import com.manichord.mgit.databinding.DialogErrorBinding
+import com.manichord.android.views.SheimiDialogFragment
+
+import timber.log.BuildConfig
 import timber.log.Timber
 
 class ErrorDialog : SheimiDialogFragment() {
+
     private var mThrowable: Throwable? = null
     @StringRes
     private var mErrorRes: Int = 0
@@ -25,22 +26,23 @@ class ErrorDialog : SheimiDialogFragment() {
 
         val builder = AlertDialog.Builder(rawActivity)
         val inflater = rawActivity.layoutInflater
-        val layout = inflater.inflate(R.layout.dialog_error, null)
+        val binding = DialogErrorBinding.inflate(inflater)
         val details = when (mThrowable) {
             is Exception -> {
                 (mThrowable as Exception).message
             }
             else -> ""
         }
-        layout.error_message.setText(getString(mErrorRes) + "\n" + details)
+        binding.errorMessage.text = getString(mErrorRes) + "\n" + details
 
-        builder.setView(layout)
+        builder.setView(binding.root)
 
         // set button listener
         builder.setTitle(errorTitleRes)
         builder.setPositiveButton(
             getString(R.string.label_ok),
-            DummyDialogListener())
+            DummyDialogListener()
+        )
         return builder.create()
     }
 
